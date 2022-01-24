@@ -28,7 +28,7 @@ exports.find = (req, res) => {
   const { id, phone,} = req.body;
   let searchTerm = req.body.search;
   // User the connection
-  connection.query('SELECT * FROM user WHERE id LIKE ?  AND phone LIKE ?', ['%' + id + '%', '%' + phone + '%'], (err, rows) => {
+  connection.query('SELECT * FROM user WHERE id LIKE ?  AND phone LIKE ?', [id, '%' + phone + '%'], (err, rows) => {
     if (!err) {
       res.render('home', { rows });
     } else {
