@@ -25,9 +25,10 @@ exports.view = (req, res) => {
 
 // Find User by Search
 exports.find = (req, res) => {
+  const { id, phone,} = req.body;
   let searchTerm = req.body.search;
   // User the connection
-  connection.query('SELECT * FROM user WHERE first_name LIKE ? OR last_name LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
+  connection.query('SELECT * FROM user WHERE id LIKE ?  AND phone LIKE ?', ['%' + id + '%', '%' + phone + '%'], (err, rows) => {
     if (!err) {
       res.render('home', { rows });
     } else {
